@@ -21,6 +21,6 @@
 
 GitHub：[https://github.com/shuangrain/SorryNet](https://github.com/shuangrain/SorryNet)
 
-Blog：[https://blog.exfast.me/2018/03/SideProjext-Gif-產生器/](https://blog.exfast.me/2018/03/SideProjext-Gif-產生器/)
+Blog：[https://blog.exfast.me/2018/03/SideProject-Gif-產生器/](https://blog.exfast.me/2018/03/SideProject-Gif-產生器/)
 
 Demo：[https://exfast-sorry.azurewebsites.net/](https://exfast-sorry.azurewebsites.net/)
