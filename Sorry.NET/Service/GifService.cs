@@ -25,11 +25,24 @@ namespace Sorry.NET.Service
 
             var directory = new DirectoryInfo(tmpPath);
 
-            IEnumerable<string> allImage = directory.GetFiles()
-                                                    .OrderByDescending(x => x.LastWriteTime)
-                                                    .Select(x => x.FullName);
-            IEnumerable<string> last5Image = allImage.Take((allImage.Count() > 5) ? 5 : allImage.Count())
-                                                     .Select(x => "/" + x.Substring(x.IndexOf("Template")).Replace(@"\", @"/"));
+            var allImage = directory.GetFiles()
+                                    .OrderByDescending(x => x.LastWriteTime);
+
+            // 只保留當日的圖
+            foreach (var item in allImage.Skip(5))
+            {
+                if (item.LastWriteTime < DateTime.Now.Date)
+                {
+                    File.Delete(item.FullName);
+                }
+            }
+
+            IEnumerable<string> last5Image = allImage.Take(5)
+                                                     .Select(x =>
+                                                     {
+                                                         int idx = x.FullName.IndexOf("Template");
+                                                         return ("/" + x.FullName.Substring(idx).Replace(@"\", @"/"));
+                                                     });
 
             return last5Image;
         }
@@ -82,7 +95,7 @@ namespace Sorry.NET.Service
                     p.StartInfo.FileName = serverProcessPath;
                     p.StartInfo.Arguments = cmd;
 
-                    p.StartInfo.UseShellExecute = false; //輸出資訊重定向
+                    p.StartInfo.UseShellExecute = false;
                     p.StartInfo.CreateNoWindow = true;
                     p.StartInfo.RedirectStandardError = true;
                     p.StartInfo.RedirectStandardOutput = true;
@@ -90,10 +103,10 @@ namespace Sorry.NET.Service
                     p.OutputDataReceived += outputHandle;
                     p.ErrorDataReceived += outputHandle;
 
-                    p.Start(); //啟動執行緒
+                    p.Start();
                     p.BeginOutputReadLine();
                     p.BeginErrorReadLine();
-                    p.WaitForExit(); //等待進程結束
+                    p.WaitForExit();
                 }
 
                 File.Delete(serverAssTemplatePath);
@@ -112,8 +125,7 @@ namespace Sorry.NET.Service
 
         private void outputHandle(object sender, DataReceivedEventArgs args)
         {
-            NLog.LogManager.GetCurrentClassLogger().Info(args.Data);
-            Debug.WriteLine(args.Data);
+            LogManager.GetCurrentClassLogger().Info(args.Data);
         }
     }
 }
