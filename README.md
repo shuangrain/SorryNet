@@ -6,6 +6,7 @@
 由於很懶所以沒有優化歡迎PR
 
 # 專案說明
+Demo：[https://exfast-sorry.azurewebsites.net/](https://exfast-sorry.azurewebsites.net/)
 
 本專案是用 Visual Studio 2017 開發
 
