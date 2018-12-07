@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="App_Data\ffmpeg.exe" />
+    <None Remove="App_Data\Template\sorry\template.ass" />
+    <None Remove="App_Data\Template\sorry\template.mp4" />
+    <None Remove="App_Data\Template\wangjingze\template.ass" />
+    <None Remove="App_Data\Template\wangjingze\template.mp4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Data\ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Template\sorry\template.ass">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Template\sorry\template.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Template\wangjingze\template.ass">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Template\wangjingze\template.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\template-sorry.gif" />
+    <None Include="wwwroot\images\template-wangjingze.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LigerShark.WebOptimizer.Core" Version="1.0.215" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+</Project>
